@@ -2,15 +2,15 @@ version: 2
 
 sources:
   - name: PARKING_SCHEMA
-    description: "Source data from the Parking Violations at NY"
+    description: "This schema contains comprehensive data on parking violations in New York City, providing insights into enforcement trends, common infractions, and temporal patterns in parking behavior."
     database: PARKING_DB
     schema: PARKING_SCHEMA
     tables:
       - name: PARKING_VIOLATIONS_2022
-        description: "Parking violations issued in 2022"
+        description: "A detailed record of parking violations issued in 2022, capturing the nature, location, and frequency of infractions, useful for analyzing yearly trends in parking enforcement."
       - name: PARKING_VIOLATIONS_2023
-        description: "Parking violations issued in 2023"
+        description: "Data on parking violations issued in 2023, allowing for comparative analysis with previous years and identification of emerging patterns or changes in compliance."
       - name: PARKING_VIOLATIONS_2024
-        description: "Parking violations issued in 2024"
+        description: "Current records of parking violations for 2024, enabling real-time analysis and insights into ongoing parking behavior and enforcement strategies."
       - name: PARKING_VIOLATIONS_CODE
-        description: "Parking violations code"
+        description: "A reference table containing the various codes associated with parking violations, providing context and definitions for the types of infractions recorded in the violation tables."
