@@ -1,0 +1,164 @@
+version: 2
+
+models:
+  - name: gold_ticket_metrics
+    description: "Aggregated revenue and ticket counts by violation code and description"
+    columns:
+      - name: code_description
+        description: "{{ doc('code_description') }}"
+        tests:
+          - not_null
+      - name: violation_code
+        description: "{{ doc('violation_code') }}"
+        tests:
+          - not_null
+          - unique
+      - name: ticket_count
+        description: "{{ doc('ticket_count') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_revenue_usd
+        description: "{{ doc('total_revenue_usd') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: avg_fee_per_ticket
+        description: "{{ doc('avg_fee_per_ticket') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+  - name: gold_tickets_year
+    description: "Aggregated revenue and ticket counts by year"
+    columns:
+      - name: year_p
+        description: "{{ doc('year_p') }}"
+        tests:
+          - not_null
+      - name: ticket_count
+        description: "{{ doc('ticket_count') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_revenue_usd
+        description: "{{ doc('total_revenue_usd') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+  - name: gold_vehicles_metrics
+    description: "Aggregated revenue and ticket counts by vehicle violation code and description"
+    columns:
+      - name: code_description
+        description: "{{ doc('code_description') }}"
+        tests:
+          - not_null
+      - name: violation_code
+        description: "{{ doc('violation_code') }}"
+        tests:
+          - not_null
+          - unique
+      - name: ticket_count
+        description: "{{ doc('ticket_count') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_revenue_usd
+        description: "{{ doc('total_revenue_usd') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+  - name: gold_yearly_average_violation_fee
+    description: "Average violation fee by year"
+    columns:
+      - name: violation_year
+        description: "{{ doc('violation_year') }}"
+        tests:
+          - not_null
+      - name: average_fee
+        description: "{{ doc('average_fee') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+  - name: gold_yearly_violation_trends_by_code
+    description: "Yearly trends of top 5 violation codes by total count"
+    columns:
+      - name: violation_year
+        description: "{{ doc('violation_year') }}"
+        tests:
+          - not_null
+      - name: violation_code
+        description: "{{ doc('violation_code') }}"
+        tests:
+          - not_null
+      - name: code_description
+        description: "{{ doc('code_description') }}"
+        tests:
+          - not_null
+      - name: violation_count
+        description: "{{ doc('violation_count') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_fees_collected
+        description: "{{ doc('total_fees_collected') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+  - name: gold_yearly_violations_by_county
+    description: "Yearly summary of violations by county"
+    columns:
+      - name: violation_year
+        description: "{{ doc('violation_year') }}"
+        tests:
+          - not_null
+      - name: violation_county
+        description: "{{ doc('violation_county') }}"
+        tests:
+          - not_null
+      - name: total_violations
+        description: "{{ doc('total_violations') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_fees_collected
+        description: "{{ doc('total_fees_collected') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+  - name: gold_yearly_violations_summary
+    description: "Yearly summary of total violations and fees collected"
+    columns:
+      - name: violation_year
+        description: "{{ doc('violation_year') }}"
+        tests:
+          - not_null
+      - name: total_violations
+        description: "{{ doc('total_violations') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: total_fees_collected
+        description: "{{ doc('total_fees_collected') }}"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
